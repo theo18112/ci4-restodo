@@ -66,7 +66,7 @@ class TodoController extends ResourceController
     }
 
     try {
-      $this->todoService->create($this->request);
+      $this->todoService->create(request()->getJSON());
     } catch (Throwable $exception) {
 
       return $this->failServerError('Error on create Todo!');
@@ -94,14 +94,15 @@ class TodoController extends ResourceController
    */
   public function update($id = null)
   {
+    
     if (! $this->validate(TodoValidation::rules())) {
       return $this->fail([
         'errors' => $this->validator->getErrors(),
       ]);
     }
-
+    
     try {
-      $this->todoService->update($id, $this->request);
+      $this->todoService->update($id, request()->getJSON());
     } catch (Throwable $exception) {
       return $this->failServerError('Error on update Todo!');
     }

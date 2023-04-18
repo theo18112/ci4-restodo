@@ -47,9 +47,7 @@ $routes->group('api', static function ($routes) {
     $routes->post('sign_up', 'RegisterController::register', ['namespace' => 'App\Controllers\Api\User\Auth']);
 
     $routes->group('', ['filter' => 'authFilter'], function ($routes) {
-			$routes->get('todo', 'TodoController::index', ['namespace' => 'App\Controllers\Api']);
-			$routes->resource('todo', ['namespace' => 'App\Controllers\Api', 'except' => 'new,edit']);
-        
+			$routes->resource('todo', ['controller' => 'TodoController','namespace' => 'App\Controllers\Api', 'except' => 'new,edit']);
     });
 });
 

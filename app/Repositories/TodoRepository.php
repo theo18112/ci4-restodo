@@ -33,7 +33,7 @@ class TodoRepository
 
 	public function update($id, $request)
 	{
-		return $this->todoModel->update($id, $request->getVar());
+		return $this->todoModel->update($id, $request);
 	}
 
 	public function delete($id)
